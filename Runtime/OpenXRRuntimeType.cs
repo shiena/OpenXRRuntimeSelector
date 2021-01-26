@@ -8,5 +8,6 @@ namespace OpenXRRuntimeJsons
         WindowsMR,
         SteamVR,
         ViveVR,
+        Varjo,
     }
 }

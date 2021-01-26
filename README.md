@@ -21,6 +21,7 @@ API Compatibility Level
 - WindowsMR
 - SteamVR
 - ViveVR
+- Varjo
 
 ## Installation
 

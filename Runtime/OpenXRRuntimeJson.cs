@@ -18,6 +18,7 @@ namespace OpenXRRuntimeJsons
                 new WindowsMRRuntimeJson(),
                 new SteamVRRuntimeJson(),
                 new ViveVRRuntimeJson(),
+                new VarjoRuntimeJson(),
             };
         }
 
