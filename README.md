@@ -20,6 +20,7 @@ API Compatibility Level
 - Oculus
 - WindowsMR
 - SteamVR
+- ViveVR
 
 ## Installation
 
