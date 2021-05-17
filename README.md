@@ -1,4 +1,6 @@
 # OpenXRRuntimeSelector
+[![openupm](https://img.shields.io/npm/v/com.shiena.openxrruntimejson?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.shiena.openxrruntimejson/)
+
 Runtime Json Selector for Unity OpenXR
 
 ## System Requirements
