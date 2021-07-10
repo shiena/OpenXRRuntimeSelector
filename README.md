@@ -59,6 +59,10 @@ You can also add it directly from GitHub on Unity 2019.4+. Note that you won't b
 
 ## Sample Code
 
+If you start XR environment after setting a specific runtime JSON, that runtime will be used.
+
+- [Automatic XR loading](https://docs.unity3d.com/Packages/com.unity.xr.management@4.0/manual/EndUser.html#automatic-xr-loading)
+
 ```cs
 using OpenXRRuntimeJsons;
 
