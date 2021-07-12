@@ -78,6 +78,10 @@ void SetOculusRuntimeFromAvailableRuntimes()
 }
 ```
 
+## Sample Project
+
+- [OpenXRRuntimeSelectorSample](https://github.com/shiena/OpenXRRuntimeSelectorSample)
+
 ## References
 
 - https://github.com/KhronosGroup/OpenXR-SDK-Source/blob/master/specification/loader/runtime.adoc
