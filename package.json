@@ -1,6 +1,6 @@
 {
   "name": "com.shiena.openxrruntimejson",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "OpenXR Runtime Selector",
   "description": "Runtime Selector for OpenXR",
   "unity": "2020.2",
