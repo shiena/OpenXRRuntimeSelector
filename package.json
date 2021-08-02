@@ -1,12 +1,18 @@
 {
   "name": "com.shiena.openxrruntimejson",
-  "displayName": "OpenXR Runtime Selector",
   "version": "0.0.1",
+  "displayName": "OpenXR Runtime Selector",
+  "description": "Runtime Selector for OpenXR",
   "unity": "2020.2",
+  "documentationUrl": "https://github.com/shiena/OpenXRRuntimeSelector",
+  "licensesUrl": "https://github.com/shiena/OpenXRRuntimeSelector/blob/main/LICENSE.md",
   "keywords": [
     "openxr",
     "xr",
     "reality"
   ],
-  "description": "Runtime Selector for OpenXR"
+  "author": {
+    "name": "KOGA Mitsuhiro",
+    "url": "https://github.com/shiena"
+  }
 }
