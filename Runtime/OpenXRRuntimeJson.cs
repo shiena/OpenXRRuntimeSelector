@@ -25,8 +25,15 @@ namespace OpenXRRuntimeJsons
                 new VarjoRuntimeJson(),
             };
             OpenXRRuntimeJsons = runtimeJsons
-                .Where(e => !string.IsNullOrWhiteSpace(e.JsonPath.Value))
-                .ToDictionary(e => e.Name, e => e.JsonPath.Value);
+                .Select(GetJsonPath)
+                .Where(e => e.result)
+                .ToDictionary(e => e.name, e => e.path);
+        }
+
+        private static (bool result, OpenXRRuntimeType name, string path) GetJsonPath(IOpenXRRuntimeJson e)
+        {
+            var result = e.TryGetJsonPath(out var path);
+            return (result, e.Name, path);
         }
 
         public static IReadOnlyDictionary<OpenXRRuntimeType, string> GetRuntimeJsonPaths()

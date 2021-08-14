@@ -11,11 +11,11 @@ namespace OpenXRRuntimeJsons
         private const string EnvVarName = "XR_RUNTIME_JSON";
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.EnvironmentVariable;
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
 
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
-            return Environment.GetEnvironmentVariable(EnvVarName);
+            jsonPath = Environment.GetEnvironmentVariable(EnvVarName);
+            return true;
         }
 
         public static void SetRuntimeJsonPath(string jsonPath)

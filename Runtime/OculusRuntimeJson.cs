@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-using System;
 using System.IO;
 using Microsoft.Win32;
 
@@ -16,9 +15,7 @@ namespace OpenXRRuntimeJsons
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.Oculus;
 
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
-
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
             var oculusPathValue = Registry.GetValue(InstallLocKey, InstallLocValue, string.Empty);
             if (oculusPathValue is string oculusPath && !string.IsNullOrWhiteSpace(oculusPath))
@@ -26,11 +23,13 @@ namespace OpenXRRuntimeJsons
                 var path = Path.Combine(oculusPath, JsonName);
                 if (File.Exists(path))
                 {
-                    return Path.GetFullPath(path);
+                    jsonPath = Path.GetFullPath(path);
+                    return true;
                 }
             }
 
-            return string.Empty;
+            jsonPath = default;
+            return false;
         }
     }
 }

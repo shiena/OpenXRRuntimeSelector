@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-using System;
 using System.IO;
 using Microsoft.Win32;
 
@@ -16,29 +15,29 @@ namespace OpenXRRuntimeJsons
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.ViveVR;
 
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
-
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
+            jsonPath = default;
             var vivePathValue = Registry.GetValue(VivePathKey, AppPathKey, string.Empty);
             if (!(vivePathValue is string vivePath))
             {
-                return string.Empty;
+                return false;
             }
 
             if (string.IsNullOrWhiteSpace(vivePath))
             {
-                return string.Empty;
+                return false;
             }
 
-            var jsonPath = Path.Combine(vivePath, JsonName);
+            var path = Path.Combine(vivePath, JsonName);
 
-            if (File.Exists(jsonPath))
+            if (File.Exists(path))
             {
-                return Path.GetFullPath(jsonPath);
+                jsonPath = Path.GetFullPath(path);
+                return true;
             }
 
-            return string.Empty;
+            return false;
         }
     }
 }

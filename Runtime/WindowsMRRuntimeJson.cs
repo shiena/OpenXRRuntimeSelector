@@ -13,18 +13,18 @@ namespace OpenXRRuntimeJsons
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.WindowsMR;
 
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
-
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
             var systemPath = Environment.GetFolderPath(Environment.SpecialFolder.System);
             var path = Path.Combine(systemPath, JsonName);
             if (File.Exists(path))
             {
-                return Path.GetFullPath(path);
+                jsonPath = Path.GetFullPath(path);
+                return true;
             }
 
-            return string.Empty;
+            jsonPath = default;
+            return false;
         }
     }
 }

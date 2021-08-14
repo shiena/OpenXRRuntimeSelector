@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-using System;
 using System.IO;
 using Microsoft.Win32;
 
@@ -16,20 +15,20 @@ namespace OpenXRRuntimeJsons
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.SystemDefault;
 
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
-
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
             var pathValue = Registry.GetValue(OpenXRKey, OpenXRValue, string.Empty);
             if (pathValue is string path && !string.IsNullOrWhiteSpace(path))
             {
                 if (File.Exists(path))
                 {
-                    return Path.GetFullPath(path);
+                    jsonPath = Path.GetFullPath(path);
+                    return true;
                 }
             }
 
-            return string.Empty;
+            jsonPath = default;
+            return false;
         }
     }
 }

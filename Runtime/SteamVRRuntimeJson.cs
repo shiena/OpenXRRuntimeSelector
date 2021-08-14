@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -21,25 +20,24 @@ namespace OpenXRRuntimeJsons
 
         public OpenXRRuntimeType Name => OpenXRRuntimeType.SteamVR;
 
-        public Lazy<string> JsonPath { get; } = new Lazy<string>(GetJsonPath);
-
-        private static string GetJsonPath()
+        public bool TryGetJsonPath(out string jsonPath)
         {
+            jsonPath = default;
             var steamPathValue = Registry.GetValue(SteamPathKey, SteamPathValue, string.Empty);
             if (!(steamPathValue is string steamPath))
             {
-                return string.Empty;
+                return false;
             }
 
             if (string.IsNullOrWhiteSpace(steamPath))
             {
-                return string.Empty;
+                return false;
             }
 
             var libraryFolders = Path.Combine(steamPath, LibraryFoldersVdf);
             if (!File.Exists(libraryFolders))
             {
-                return string.Empty;
+                return false;
             }
 
             var folders = new List<string> {steamPath};
@@ -47,12 +45,12 @@ namespace OpenXRRuntimeJsons
             {
                 if (sr.ReadLine()?.Trim() != LibraryFoldersKey)
                 {
-                    return string.Empty;
+                    return false;
                 }
 
                 if (sr.ReadLine()?.Trim() != "{")
                 {
-                    return string.Empty;
+                    return false;
                 }
 
                 var line = sr.ReadLine()?.Trim();
@@ -73,11 +71,12 @@ namespace OpenXRRuntimeJsons
                 var path = Path.Combine(folder, JsonName);
                 if (File.Exists(path))
                 {
-                    return Path.GetFullPath(path);
+                    jsonPath = Path.GetFullPath(path);
+                    return true;
                 }
             }
 
-            return string.Empty;
+            return false;
         }
     }
 }
