@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-namespace OpenXRRuntimeJsons
+namespace OpenXRRuntimeJsons.Internal
 {
     internal interface IOpenXRRuntimeJson
     {

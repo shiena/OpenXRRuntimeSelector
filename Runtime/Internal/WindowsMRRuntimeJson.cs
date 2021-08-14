@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 
-namespace OpenXRRuntimeJsons
+namespace OpenXRRuntimeJsons.Internal
 {
     internal class WindowsMRRuntimeJson : IOpenXRRuntimeJson
     {

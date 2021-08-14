@@ -5,21 +5,21 @@
 using System.IO;
 using Microsoft.Win32;
 
-namespace OpenXRRuntimeJsons
+namespace OpenXRRuntimeJsons.Internal
 {
-    public class VarjoRuntimeJson : IOpenXRRuntimeJson
+    public class ViveVRRuntimeJson : IOpenXRRuntimeJson
     {
-        private const string VarjoRuntimeKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\Varjo\Runtime";
-        private const string InstallDirKey = "InstallDir";
-        private const string JsonName = @"varjo-openxr/VarjoOpenXR.json";
+        private const string VivePathKey = @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\HtcVive\Updater";
+        private const string AppPathKey = "AppPath";
+        private const string JsonName = @"App/ViveVRRuntime/ViveVR_openxr/ViveOpenXR.json";
 
-        public OpenXRRuntimeType Name => OpenXRRuntimeType.Varjo;
+        public OpenXRRuntimeType Name => OpenXRRuntimeType.ViveVR;
 
         public bool TryGetJsonPath(out string jsonPath)
         {
             jsonPath = default;
-            var varjoPathValue = Registry.GetValue(VarjoRuntimeKey, InstallDirKey, string.Empty);
-            if (!(varjoPathValue is string vivePath))
+            var vivePathValue = Registry.GetValue(VivePathKey, AppPathKey, string.Empty);
+            if (!(vivePathValue is string vivePath))
             {
                 return false;
             }

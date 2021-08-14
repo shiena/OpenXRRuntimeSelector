@@ -4,7 +4,7 @@
 
 using System;
 
-namespace OpenXRRuntimeJsons
+namespace OpenXRRuntimeJsons.Internal
 {
     internal class EnvironmentVariableRuntimeJson : IOpenXRRuntimeJson
     {

@@ -5,7 +5,7 @@
 using System.IO;
 using Microsoft.Win32;
 
-namespace OpenXRRuntimeJsons
+namespace OpenXRRuntimeJsons.Internal
 {
     internal class OculusRuntimeJson : IOpenXRRuntimeJson
     {
