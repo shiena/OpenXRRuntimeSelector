@@ -5,6 +5,7 @@
   "description": "Runtime Selector for OpenXR",
   "unity": "2020.2",
   "documentationUrl": "https://github.com/shiena/OpenXRRuntimeSelector",
+  "changelogUrl": "https://github.com/shiena/OpenXRRuntimeSelector/releases",
   "licensesUrl": "https://github.com/shiena/OpenXRRuntimeSelector/blob/main/LICENSE.md",
   "keywords": [
     "openxr",
