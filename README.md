@@ -70,10 +70,18 @@ void SetOculusRuntimeFromAvailableRuntimes()
 {
     // Get the available OpenXR runtime json
     IReadOnlyDictionary<OpenXRRuntimeType,string> openXRRuntimes = OpenXRRuntimeJson.GetRuntimeJsonPaths();
-    if (openXRRuntimes.TryGetValue(OpenXRRuntimeType.Oculus, out string oculusRuntime))
+    if (openXRRuntimes.ContainsKey(OpenXRRuntimeType.Oculus))
     {
         // Use the Oculus OpenXR runtime
-        OpenXRRuntimeJson.SetRuntimeJsonPath(oculusRuntime);
+        OpenXRRuntimeJson.SetRuntimeJsonPath(OpenXRRuntimeType.Oculus);
+    }
+}
+
+void SetCustomRuntimeJson(string jsonPath)
+{
+    if (!OpenXRRuntimeJson.SetRuntimeJsonPath(jsonPath))
+    {
+        Debug.Log($"{jsonPath} is not available");
     }
 }
 ```

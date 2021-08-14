@@ -42,12 +42,25 @@ namespace OpenXRRuntimeJsons
             return OpenXRRuntimeJsons;
         }
 
-        public static void SetRuntimeJsonPath(string jsonPath)
+        public static bool SetRuntimeJsonPath(string jsonPath)
         {
             if (File.Exists(jsonPath))
             {
                 EnvironmentVariableRuntimeJson.SetRuntimeJsonPath(jsonPath);
+                return true;
             }
+
+            return false;
+        }
+
+        public static bool SetRuntimeJsonPath(OpenXRRuntimeType runtimeType)
+        {
+            if (OpenXRRuntimeJsons.TryGetValue(runtimeType, out var jsonPath))
+            {
+                return SetRuntimeJsonPath(jsonPath);
+            }
+
+            return false;
         }
     }
 }
