@@ -10,7 +10,7 @@ namespace OpenXRRuntimeJsons
 {
     public static class OpenXRRuntimeJson
     {
-        private static readonly IDictionary<OpenXRRuntimeType, string> openXRRuntimeJsons;
+        private static readonly IReadOnlyDictionary<OpenXRRuntimeType, string> OpenXRRuntimeJsons;
 
         static OpenXRRuntimeJson()
         {
@@ -24,14 +24,14 @@ namespace OpenXRRuntimeJsons
                 new ViveVRRuntimeJson(),
                 new VarjoRuntimeJson(),
             };
-            openXRRuntimeJsons = runtimeJsons
+            OpenXRRuntimeJsons = runtimeJsons
                 .Where(e => !string.IsNullOrWhiteSpace(e.JsonPath.Value))
                 .ToDictionary(e => e.Name, e => e.JsonPath.Value);
         }
 
-        public static IDictionary<OpenXRRuntimeType, string> GetRuntimeJsonPaths()
+        public static IReadOnlyDictionary<OpenXRRuntimeType, string> GetRuntimeJsonPaths()
         {
-            return openXRRuntimeJsons;
+            return OpenXRRuntimeJsons;
         }
 
         public static void SetRuntimeJsonPath(string jsonPath)

@@ -69,7 +69,7 @@ using OpenXRRuntimeJsons;
 void SetOculusRuntimeFromAvailableRuntimes()
 {
     // Get the available OpenXR runtime json
-    IDictionary<OpenXRRuntimeType,string> openXRRuntimes = OpenXRRuntimeJson.GetRuntimeJsonPaths();
+    IReadOnlyDictionary<OpenXRRuntimeType,string> openXRRuntimes = OpenXRRuntimeJson.GetRuntimeJsonPaths();
     if (openXRRuntimes.TryGetValue(OpenXRRuntimeType.Oculus, out string oculusRuntime))
     {
         // Use the Oculus OpenXR runtime
