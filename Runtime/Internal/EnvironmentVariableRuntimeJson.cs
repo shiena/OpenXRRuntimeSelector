@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 using System;
+using System.IO;
 
 namespace OpenXRRuntimeJsons.Internal
 {
@@ -15,7 +16,7 @@ namespace OpenXRRuntimeJsons.Internal
         public bool TryGetJsonPath(out string jsonPath)
         {
             jsonPath = Environment.GetEnvironmentVariable(EnvVarName);
-            return true;
+            return !File.Exists(jsonPath);
         }
 
         public static void SetRuntimeJsonPath(string jsonPath)
