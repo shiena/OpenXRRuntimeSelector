@@ -62,5 +62,33 @@ namespace OpenXRRuntimeJsons
 
             return false;
         }
+
+        public static string GetRuntimeName(string jsonPath)
+        {
+            var result = string.Empty;
+            if (File.Exists(jsonPath))
+            {
+                var jsonText = File.ReadAllText(jsonPath);
+                var json = Manifest.FromJson(jsonText);
+                result = json?.Runtime?.Name;
+
+                if (string.IsNullOrWhiteSpace(result))
+                {
+                    result = Path.GetFileNameWithoutExtension(jsonPath);
+                }
+            }
+
+            return result;
+        }
+
+        public static string GetCurrentRuntimeName()
+        {
+            if (!new EnvironmentVariableRuntimeJson().TryGetJsonPath(out var path))
+            {
+                new SystemDefaultRuntimeJson().TryGetJsonPath(out path);
+            }
+
+            return GetRuntimeName(path);
+        }
     }
 }
