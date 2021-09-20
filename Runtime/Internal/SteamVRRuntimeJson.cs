@@ -2,6 +2,7 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -43,17 +44,19 @@ namespace OpenXRRuntimeJsons.Internal
             var folders = new List<string> {steamPath};
             using (var sr = new StreamReader(libraryFolders))
             {
-                if (sr.ReadLine()?.Trim() != LibraryFoldersKey)
-                {
-                    return false;
-                }
-
-                if (sr.ReadLine()?.Trim() != "{")
-                {
-                    return false;
-                }
-
                 var line = sr.ReadLine()?.Trim();
+                if (string.Compare(line, LibraryFoldersKey, StringComparison.OrdinalIgnoreCase) != 0)
+                {
+                    return false;
+                }
+
+                line = sr.ReadLine()?.Trim();
+                if (line != "{")
+                {
+                    return false;
+                }
+
+                line = sr.ReadLine()?.Trim();
                 while (line != null && line != "{")
                 {
                     var m = RxKeyValue.Match(line);
