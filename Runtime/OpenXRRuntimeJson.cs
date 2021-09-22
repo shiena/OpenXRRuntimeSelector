@@ -90,5 +90,15 @@ namespace OpenXRRuntimeJsons
 
             return GetRuntimeName(path);
         }
+
+        public static IReadOnlyDictionary<string, string> GetAvailableRuntimesJsonPath()
+        {
+            if (new OpenXRAvailableRuntimes().TryGetJsonPaths(out var activeRuntimes))
+            {
+                return activeRuntimes.ToDictionary(GetRuntimeName, v => v);
+            }
+
+            return null;
+        }
     }
 }
